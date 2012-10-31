@@ -4,10 +4,6 @@ local function append(self, t)
   return table.append(table.copy(self), t)
 end
 
-function array.new(t)
-  return setmetatable(t or {}, array)
-end
-
 function array:__call(i, j)
   if j then
     local ret = {}

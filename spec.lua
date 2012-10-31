@@ -151,28 +151,6 @@ context("Table functions", function()
     end)
   end)
   
-  context("table.reject", function()
-    local a = { 1, 2, 2, 2, 3, 4 }
-    local b = { 1, 2, 3, 4, 5 }
-    local c = { 1, 2, 3, foo = "foo" }
-    local d = table.reject(a, 2)
-    table.reject(b, function(x) return x < 4 end)
-    table.reject(c, function() return true end)
-    inplaceTest(a, d)
-    
-    test("If called with a value, it should remove all elements equal to that value", function()
-      contentsEqual(a, { 1, 3, 4 })
-    end)
-    
-    test("If called with a function, it should remove all elements for which that functions returns false", function()
-      contentsEqual(b, { 4, 5 })
-    end)
-    
-    test("It should ignore values with non-integer keys", function()
-      assert_equal(c.foo, "foo")
-    end)
-  end)
-  
   context("table.reverse", function()
     local x = { 1, "foo", 3, 4, 5 }
     local y = table.reverse(x)

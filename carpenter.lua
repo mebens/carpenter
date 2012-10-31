@@ -26,12 +26,26 @@ function table.imap(t, func)
   return t
 end
 
--- In-place or not? In-place would be much more resource intensive than making a new table.
--- All the others operate in-place, but this is a different case.
--- Ruby uses Array.reject! for in-place. Perhaps table.xreject (or similar) for in-place?
--- Or a second boolean argument which, if true, would cause table.reject to operate in-place?
-function table.reject(val)
+function table.reject(t, val)
+  if type(val) == "function" then
+    for k, v in pairs(t) do
+      if not val(v) then t[k] = nil end
+    end
+  else
+    for k, v in pairs(t) do
+      if v ~= val then t[k] = nil end
+    end
+  end
   
+  return t
+end
+
+function table.ireject(t, val, inplace)
+  if inplace then
+    
+  else
+    
+  end
 end
 
 function table.merge(a, b, overwrite)
